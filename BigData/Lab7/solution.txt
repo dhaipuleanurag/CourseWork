@@ -1,0 +1,8 @@
+1. 3 mins 472 milliseconds
+2. 5 map reduce, 1st mapreduce slowest-30seconds
+3.
+1 		clean1,clean2,houred,ngramed1,raw       									DISTINCT
+2 		hour_frequency1,hour_frequency2 											GROUP_BY,COMBINER
+3 		filtered_uniq_frequency,uniq_frequency1,uniq_frequency2,uniq_frequency3     GROUP_BY
+4 		ordered_uniq_frequency  													SAMPLER
+5 		ordered_uniq_frequency  													ORDER_BY

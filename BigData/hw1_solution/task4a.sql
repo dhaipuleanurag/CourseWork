@@ -1,0 +1,1 @@
+select M.vehicle_type, count(*) as total_trips, sum(F.fare_amount) as total_revenue, concat(100 * (sum(F.tip_amount / F.fare_amount) / count(*)), '%') as avg_tip_percentage from fares F, medallions M where F.medallion= M.medallion group by M.vehicle_type order by M.vehicle_type;

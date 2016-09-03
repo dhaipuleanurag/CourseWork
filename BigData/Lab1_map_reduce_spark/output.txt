@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "D:/Academics/Courses/BigData/Lab1_map_reduce_spark/wordcount.py", line 30, in <module>
+    sc = SparkContext(appName="PythonWordCount")
+  File "D:\Softwares\spark-1.6.1-bin-hadoop2.4\python\lib\pyspark.zip\pyspark\context.py", line 115, in __init__
+  File "D:\Softwares\spark-1.6.1-bin-hadoop2.4\python\lib\pyspark.zip\pyspark\context.py", line 172, in _do_init
+  File "D:\Softwares\spark-1.6.1-bin-hadoop2.4\python\lib\pyspark.zip\pyspark\context.py", line 235, in _initialize_context
+  File "D:\Softwares\spark-1.6.1-bin-hadoop2.4\python\lib\py4j-0.9-src.zip\py4j\java_gateway.py", line 1064, in __call__
+  File "D:\Softwares\spark-1.6.1-bin-hadoop2.4\python\lib\py4j-0.9-src.zip\py4j\protocol.py", line 308, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.
+: java.lang.NullPointerException
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1012)
+	at org.apache.hadoop.util.Shell.runCommand(Shell.java:445)
+	at org.apache.hadoop.util.Shell.run(Shell.java:418)
+	at org.apache.hadoop.util.Shell$ShellCommandExecutor.execute(Shell.java:650)
+	at org.apache.hadoop.fs.FileUtil.chmod(FileUtil.java:873)
+	at org.apache.hadoop.fs.FileUtil.chmod(FileUtil.java:853)
+	at org.apache.spark.util.Utils$.fetchFile(Utils.scala:406)
+	at org.apache.spark.SparkContext.addFile(SparkContext.scala:1386)
+	at org.apache.spark.SparkContext.addFile(SparkContext.scala:1340)
+	at org.apache.spark.SparkContext$$anonfun$15.apply(SparkContext.scala:491)
+	at org.apache.spark.SparkContext$$anonfun$15.apply(SparkContext.scala:491)
+	at scala.collection.immutable.List.foreach(List.scala:318)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:491)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:59)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:234)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:381)
+	at py4j.Gateway.invoke(Gateway.java:214)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:79)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:68)
+	at py4j.GatewayConnection.run(GatewayConnection.java:209)
+	at java.lang.Thread.run(Thread.java:745)
+

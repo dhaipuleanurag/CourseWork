@@ -1,0 +1,28 @@
+create table alltrips select T.medallion, T.hack_license, T.vendor_id, T.pickup_datetime, T.rate_code, T.store_and_fwd_flag, T.dropoff_datetime, T.passenger_count, T.trip_time_in_secs, T.trip_distance,T.pickup_longitude, T.pickup_latitude, T.dropoff_longitude, T.dropoff_latitude, F.payment_type, F.fare_amount, F.surcharge, F.mta_tax, F.tip_amount, F.tolls_amount, F.total_amount from fares F, trips T where F.medallion=T.medallion and F.hack_license=T.hack_license and F.vendor_id=T.vendor_id and F.pickup_datetime=T.pickup_datetime order by medallion, hack_license, vendor_id, pickup_datetime, pickup_longitude;
+
+select total_amount, count(*) from fares group by total_amount order by total_amount;
+
+select total_amount, count(*) from fares group by total_amount order by total_amount;
+
+select passenger_count, count(*) from trips group by passenger_count order by passenger_count;
+
+
+//Need to check this!
+//Based on pickup_datetime?
+select cast(pickup_datetime as date) as datefield, count(*) from trips group by cast(pickup_datetime as date);
+
+select medallion, count(*) from trips group by medallion order by medallion;
+
+select medallion, pickup_datetime from trips group by medallion,pickup_datetime having count(*) > 1 order by medallion;
+
+select medallion, count(*) from trips where dropoff_latitude = 0 and dropoff_longitude = 0 and pickup_latitude = 0 and pickup_longitude = 0 group by medallion order by medallion;
+
+select temp.hack_license,count(temp.hack_license) as num_taxis_used from (select medallion,hack_license from trips group by medallion,hack_license) temp group by temp.hack_license order by temp.hack_license;
+
+select medallion, count(*) from trips where dropoff_latitude = 0 and dropoff_longitude = 0 and pickup_latitude = 0 and pickup_longitude = 0 group by medallion order by medallion;
+
+select M.vehicle_type, count(*) as total_trips, sum(F.total_amount) as total_revenue, (avg(F.tip_amount)/sum(F.fare_amount)*100) as tip_percentage from fares F, medallions M where F.medallion= M.medallion group by M.vehicle_type order by M.vehicle_type;
+
+select M.medallion_type, count(*) as total_trips, sum(F.total_amount) as total_revenue, (avg(F.tip_amount)/sum(F.fare_amount)*100) as tip_percentage from fares F, medallions M where F.medallion= M.medallion group by M.medallion_type order by M.medallion_type;
+
+select M.agent_name, sum(F.total_amount) as total_revenue medallions M where F.medallion=M.medallion group by M.agent_name limit 10;

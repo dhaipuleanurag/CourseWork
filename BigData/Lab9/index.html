@@ -1,0 +1,220 @@
+<head>
+  <style type="text/css">
+  .axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+  svg{
+    width: 800px;
+    height:500px;
+  }
+  circle{
+    fill:steelblue;
+  }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  var data;
+  d3.csv("car.csv",function(result){
+    data = result.map(function(d){
+      return {
+        name: d.name,
+        cylinders: +d.cylinders,
+        mpg: +d.mpg,
+        displacement: +d.displacement,
+        horsepower: +d.horsepower,
+        weight: +d.weight,
+        acceleration: +d.acceleration,
+        year: +d["model.year"]
+      }
+    });
+
+    var axisNames = {
+      displacement : 'Displacement',
+      mpg : 'mpg',
+      cylinders : 'Cylinders',
+      horsepower : 'Horsepower',
+      weight : 'Weight',
+      acceleration : 'Acceleration',
+      year : 'Model Year'
+    };
+
+    var xScale = d3.scale.linear().range([50,680]);
+    xScale.domain([0,d3.max(data, function(d){return d.displacement;})]);
+
+    var yScale = d3.scale.linear().range([20,450]);
+    yScale.domain([d3.max(data, function(d){return d.mpg;}),0]);
+
+    var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+    var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+    var chart = d3.select('svg').selectAll("circle").data(data);
+
+    chart.enter().append("circle")
+    .attr({
+      cx: function(d){return xScale(d.displacement)},
+      cy: function(d){return yScale(d.mpg)},
+      r:5
+    }).on('mouseover',function(d){
+      var head = d3.select("#hovered").text(d.name);
+    });
+
+    d3.select('svg').append('g')
+    .attr("class", "xaxis")
+    .attr("transform","translate(0,445)")
+    .call(xAxis)
+    .append("text")
+    .attr("class", "label")
+    .attr("y",-10)
+    .attr("x",700)
+    .style("text-anchor", "end")
+    .text("Displacement");
+
+    d3.select('svg').append('g')
+    .attr("class", "yaxis")
+    .attr("transform","translate(55,0)")
+    .call(yAxis)
+    .append("text")
+    .attr("class", "label")
+    .attr("transform", "rotate(-90)")
+    .attr("y",15)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("mpg");
+  })
+
+function applyQuery(){
+  var X = document.getElementById("sel-x").value;
+  var Y = document.getElementById("sel-y").value;
+
+
+  var min = +document.getElementById("mpg_min").value;
+  var max = +document.getElementById("mpg_max").value;
+
+  filteredData = data.filter(function(d) {
+    return min <= d.mpg && d.mpg <= max;
+  })
+
+  var cxValue;
+  var cyValue;
+
+  var xScale = d3.scale.linear().range([50,680]); 
+  var yScale = d3.scale.linear().range([20,450]);
+
+  if (X == "displacement") {
+    xScale.domain([0,d3.max(filteredData, function(d){return d.displacement;})]);
+    cxValue = function(d){return xScale(d.displacement);};
+  } else if(X == "mpg") {
+    xScale.domain([0,d3.max(filteredData, function(d){return d.mpg;})]);    
+    cxValue = function(d){return xScale(d.mpg);};
+  } else if(X == "cylinders") {
+    xScale.domain([0,d3.max(filteredData, function(d){return d.cylinders;})]);
+    cxValue = function(d){return xScale(d.cylinders);};
+  } else if(X == "horsepower") {
+    xScale.domain([0,d3.max(filteredData, function(d){return d.horsepower;})]);
+    cxValue = function(d){return xScale(d.horsepower);};
+  } else if(X == "weight") {
+    xScale.domain([0,d3.max(filteredData, function(d){return d.weight;})]);
+    cxValue = function(d){return xScale(d.weight);};
+  } else if(X == "acceleration") {
+    xScale.domain([0,d3.max(filteredData, function(d){return d.acceleration;})]);
+    cxValue = function(d){return xScale(d.acceleration);};
+  } else {
+    xScale.domain([0,d3.max(filteredData, function(d){return d.year;})]);
+    cxValue = function(d){return xScale(d.year);};
+  }
+
+  if (Y == "displacement") {
+    yScale.domain([d3.max(filteredData, function(d){return d.displacement;}),0]);
+    cyValue = function(d){return yScale(d.displacement);};
+  } else if(Y == "mpg") {
+    yScale.domain([d3.max(filteredData, function(d){return d.mpg;}),0]);
+    cyValue = function(d){return yScale(d.mpg);};
+  } else if(Y == "cylinders") {
+    yScale.domain([d3.max(filteredData, function(d){return d.cylinders;}),0]);
+    cyValue = function(d){return yScale(d.cylinders);};
+  } else if(Y == "horsepower") {
+    yScale.domain([d3.max(filteredData, function(d){return d.horsepower;}),0]);
+    cyValue = function(d){return yScale(d.horsepower);};
+  } else if(Y == "weight") {
+    yScale.domain([d3.max(filteredData, function(d){return d.weight;}),0]);
+    cyValue = function(d){return yScale(d.weight);};
+  } else if(Y == "acceleration") {
+    yScale.domain([d3.max(dafilteredDatata1, function(d){return d.acceleration;}),0]);
+    cyValue = function(d){return yScale(d.acceleration);};
+  } else {
+    yScale.domain([d3.max(filteredData, function(d){return d.year;}),0]);
+    cyValue = function(d){return yScale(d.year);};
+  }
+
+  var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+  var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+  var chart = d3.select('svg').selectAll("circle").data(filteredData);
+
+  d3.select('svg').select(".xaxis")
+  .transition().attr("transform","translate(0,445)")
+  .call(xAxis)
+
+  d3.select('svg').select(".yaxis")
+  .transition().attr("transform","translate(55,0)")
+  .call(yAxis)
+
+  chart.enter().append("circle")
+  .attr({
+    cx: cxValue,
+    cy: cyValue,
+    r:5
+  }).on('mouseover',function(d){
+    d3.select("#hovered").text(d.name);
+  });
+
+  chart.transition().duration(500)
+  .attr({
+    cx: cxValue,
+    cy: cyValue,
+    r:5
+  });   
+
+  chart.exit().remove();    
+}
+</script>
+</head>
+<body>
+  <h4 id="hovered">chevrolet chevelle malibu</h4>
+  <div class="plot">
+    <svg></svg>
+  </div>
+  <div class="ui">
+    <div>
+      <label>X-Axis</label>
+      <select id="sel-x" onchange="applyQuery()">
+        <option value="displacement">displacement</option>
+        <option value="mpg">mpg</option>
+        <option value="cylinders">cylinders</option>
+        <option value="horsepower">horsepower</option>
+        <option value="weight">weight</option>
+        <option value="acceleration">acceleration</option>
+        <option value="year">year</option>
+      </select>
+      <label>Y-Axis</label>
+      <select id="sel-y" onchange="applyQuery()">
+        <option value="mpg">mpg</option>
+        <option value="cylinders">cylinders</option>
+        <option value="displacement">displacement</option>
+        <option value="horsepower">horsepower</option>
+        <option value="weight">weight</option>
+        <option value="acceleration">acceleration</option>
+        <option value="year">year</option>
+      </select>
+    </div>
+    <div>
+      <input id="mpg_min" type="text" value="0" size="10">
+      <input id="mpg_max" type="text" value="30" size="10">
+      <button id="update" onclick="applyQuery()">Query MPG</button>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,1 @@
+select temp.hack_license,count(temp.hack_license) as num_taxis_used from (select medallion,hack_license from trips group by medallion,hack_license) temp group by temp.hack_license order by temp.hack_license;
