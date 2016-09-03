@@ -1,0 +1,15 @@
+Please enter your code review in this file as plain text
+and make sure to include it when you commit your project.
+1. Not a good idea to synchronize based on 'this' object. This can cause deadlocks as the external user can use the same lock. 
+2. getLapTimes() - if stop watching is running, no need to account for currentLap that is being in progress.
+3. Line number 105, StopwatchCreator, supressWarnings("unchecked"). Is this right to do? If yes, what is unchecked? 
+4. Line 32, Stopwatch Factory: sw is not a right naming convention.
+5. Line90, StopwatchCreator, comment lines exceed the character limit of 80.
+6. Documentation could have been more elaborate. Consider the case
+   start -> lap -> stop -> There are two laps at this point -> start -> There is one lap at this point.
+   With documentation this could have been explained.
+7. The variable name lapTime stores lists of all laps. 'lapTime' sounds like the time for currentLap. 'lapTimes' or 'laps'(plural) would have been better.
+8. The constructor of StopwatchCreator takes id(string) as paramter. Here null can also be passed. Since the construtor has protected access, other classes in same package can create a stopWatch. Passing null can lead to NullPointerException being thrown.
+9. Incorrect way of writing equals methods. Two stopwatches cannot have same id. This means equals will be true only when both stopwatch refer to same object. This is not right implementaion for equals.
+10. Incorrect order of importing in stopwatchFactory.java. 
+11. Line 30, StopwatchFactory, Better to throw exception with messages. This will make finding faults easier if exceptions are thrown.

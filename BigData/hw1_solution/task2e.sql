@@ -1,0 +1,1 @@
+select medallion, count(*) as num_trips from trips group by medallion order by medallion;

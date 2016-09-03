@@ -1,0 +1,1 @@
+select M.agent_name, sum(F.fare_amount) as total_revenue from medallions M,fares F where F.medallion=M.medallion group by M.agent_number order by total_revenue desc, M.agent_name limit 10;

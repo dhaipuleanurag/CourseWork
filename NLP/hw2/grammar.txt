@@ -1,0 +1,12 @@
+sentence		:= plnp plvp | sgr3np sgrvp | nonsgr3np plvp | sgraux sgr3np sgrvp | plaux plnp plvp;
+sgrnp    		:= sgr3np | nonsgr3np;
+sgr3np			:= sgr3npronoun | sgrdet sgrnominal | sgrnominal | sgrpropernoun;
+nonsgr3np		:= nonsgr3npronoun;
+plnp			:= plnpronoun | plpropernoun | pldet plnominal | plnominal;
+sgrnominal 		:= sgrnoun | sgrnominal sgrnoun | sgrnominal pp | sgrnominal pp pp | sgrnominal sgrrel-clause;
+plnominal		:= plnoun | plnominal plnoun | plnominal pp | plnominal pp pp | plnominal plrel-clause;
+sgrvp			:= sgrverb sgrpropernoun | sgrverb sgrapronoun | sgrverb plapronoun | sgrverb sgrnp pp | sgrverb plnp pp | sgrverb pp | sgrverb inf-marker sgrverb | sgrverb;
+plvp 			:= plverb plpropernoun | plverb sgrapronoun | plverb plapronoun | plverb plnp pp | plverb sgrnp pp | plverb pp | plverb inf-marker plverb | plverb;
+sgrrel-clause	:= rel-pro sgrvp;
+plrel-clause	:= rel-pro plvp;
+pp 				:= prep sgrpropernoun | prep sgrapronoun | prep plapronoun | sgrdet sgrnominal | sgrnominal | pldet plnominal | plnominal;

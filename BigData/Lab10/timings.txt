@@ -1,0 +1,14 @@
+Part I
+
+2.) 13979 (10.34 sec)
+3.) 21437 (10.17 sec)
+4.) 13979 (10.31 sec)
+5.) 21437 (10.01 sec)
+
+Part II
+
+2.) 13979 (35.19 sec)
+3.) 21437 (36.65 sec)
+4.) 13979 (1.89 sec)
+5.) 21437 (1.64 sec)
+6) It is faster with r tree because we basically are reducing the total number of polygon tests. Therefore, the significant reduction in time.

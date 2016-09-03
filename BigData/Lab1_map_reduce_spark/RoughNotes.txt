@@ -1,0 +1,21 @@
+vi .bashrc
+env - shows all environment variables
+cat .bashrc - concatenates all command used before.
+
+alias hfs='/usr/bin/hadoop fs'
+export HAS=/opt/cloudera/parcels/CDH-5.4.5-1.cdh5.4.5.p0.7/jars
+export HSJ=hadoop-streaming-2.6.0-cdh5.4.5.jar
+alias hjs='/usr/bin/hadoop jar $HAS/$HSJ'
+
+
+s3://bucket/wordcount/logs
+
+hjs file
+map.py mapper
+map.py file
+reduce.py
+reducer
+reduce.py input
+/user/your_netid/wikipedia.txt
+output
+/user/your_netid/wikipedia.output

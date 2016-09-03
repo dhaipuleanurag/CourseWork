@@ -1,0 +1,1 @@
+select DATE(pickup_datetime) as day,sum(total_amount) as total_revenue from fares group by day order by day;

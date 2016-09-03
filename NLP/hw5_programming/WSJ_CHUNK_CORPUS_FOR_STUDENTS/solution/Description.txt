@@ -1,0 +1,6 @@
+Following are things I tried:
+Initially I wrote code in python including training. Then I found that java has better implementation of training and hence I developed features in python but trained in Java. Hence attached both java and python code.
+Features tried:
+Current/Next/Previous/NextNext/PreviousPrevious POS, Next/Previous word, Words starts with capital, Word includes hiphen, Word ends with 's', word length, all upper case
+Following features did not improve:
+Ending with ing, Ending with al, Ending with ed  

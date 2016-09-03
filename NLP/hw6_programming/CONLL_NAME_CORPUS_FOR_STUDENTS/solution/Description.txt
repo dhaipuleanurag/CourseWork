@@ -1,0 +1,7 @@
+Following are things I tried:
+Wrote features in python but trained in Java because based on my experience with last assignment I found that java's library is better when it comes to training. Also, it is faster.
+Features tried:
+Current/Next/Previous POS, Next/Previous word, Current/Next/Previous chunk, Words starts with capital, Word includes hiphen, word length, all upper case
+I also tried including features that says whether a word belongs to set of names(first name, last name and surname). 
+Then I compiled list of all organization names, personal etc into a list from training data and created features accordingly that says whether a name is present in those respective lists.
+I got close to 83.49% F1 measure.

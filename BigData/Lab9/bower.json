@@ -1,0 +1,25 @@
+{
+  "name": "ad3531",
+  "homepage": "https://github.com/dhaipuleanurag/big_data",
+  "authors": [
+    "ad3531 <ad3531@nyu.edu>"
+  ],
+  "description": "Lab9",
+  "main": "index.html",
+  "keywords": [
+    "Lab9"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery": "^2.2.3",
+    "d3": "^3.5.16"
+  }
+}
